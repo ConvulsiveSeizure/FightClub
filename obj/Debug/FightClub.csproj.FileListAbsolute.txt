@@ -1,0 +1,7 @@
+C:\Users\Rakuzan\Desktop\C#\FightClub\bin\Debug\FightClub.exe.config
+C:\Users\Rakuzan\Desktop\C#\FightClub\bin\Debug\FightClub.exe
+C:\Users\Rakuzan\Desktop\C#\FightClub\bin\Debug\FightClub.pdb
+C:\Users\Rakuzan\Desktop\C#\FightClub\obj\Debug\FightClub.csprojAssemblyReference.cache
+C:\Users\Rakuzan\Desktop\C#\FightClub\obj\Debug\FightClub.csproj.CoreCompileInputs.cache
+C:\Users\Rakuzan\Desktop\C#\FightClub\obj\Debug\FightClub.exe
+C:\Users\Rakuzan\Desktop\C#\FightClub\obj\Debug\FightClub.pdb

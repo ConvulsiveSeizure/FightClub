@@ -9,121 +9,135 @@ namespace FightClub
 {
     //FIGHTER / БОЕЦ
     class Fighter {
-        internal string Name { get; set; }
-        internal int Power { get; set; } //сила
-        //internal int Agility { get; set; } //ловкость
-        //internal int Intellect { get; set; } //интелект
-        //internal int Stamina { get; set; } //стамина
-        internal int Resistance { get; set; } //стойкость
-        internal int Health = 150;
-        internal bool BlockOrNot() {
+        internal string Name;
+        internal int Health = 1000;
+        internal int Power;
+        internal int Resistance = 100;
+
+        public bool TryBlock() {
             var rnd = new Random();
-            int res = rnd.Next(-2, 2);
-            return res < 0 ? false : true;
+            int res = rnd.Next(1, 5);
+            return res > 3 ? true : false;
         }
-
     }
-
-    //PLAYER / ИГРОК
-
-
 
     class Program
     {
 
+        static void RenderSpriteBlock(string name1, int health1, string name2, int health2) {
+            Console.WriteLine(
+
+               "                           ██░██░██                                           ░░░░░░░░░░░░░░░░░░░░░░░░░██████                          \n" +
+               $"  {name1} {health1}HP            ██░██░████                                              ██████░░░░░░░░░░░░░░░░░░████████                          \n" +
+                "                         ████░██░██░█                                     ██░░░░░███░░░░░░░░░░░░░░████████████                        \n" +
+               $"                          █░░░░░░░░░░█                                   ██░░░░░░███░░░░░░░░░░░░░░█░░░░░░░░░░█       {name2} {health2}HP  \n" +
+                "                         █░░░░░░░░░░█                                     █░░░░░░███░░░░░░░░░░░░░█░░░░░░░░░░█                         \n" +
+                "                        ██░███░░███░█                                     █░░░░░█░░░░░░░░░░░░░░░████░░███░░██                         \n" +
+                "                       █░█░░░█░░░░█░░█                          ░         ██░░░░██░░░░░░░░░░░░░░░█░█░░░░█░░░░░█                       \n" +
+                "                         █░░░░░░░░░░░█                              ░     █░░░░░█░░░░░░░░░░░░░░░░█░░░██░░░░░░█                        \n" +
+                "                         █░░████░░░░█                             ░    ░ █░░░░░░░█░░░░░░░░░░░░░░░░█░░████░░░░█                        \n" +
+                "                          █░░░░░░█░██░░░░░░░░░░░░░░░░░░░█████████░█░█░  █░░░░░░░░░░░░░░░░░░░░░░░░░█░░░░░░█░██                         \n" +
+                "                          ███░████░░█░░░░░░░░░░░░░░██░██░░░░░░░█████░█ █░░░░░░░░█████████░░░░░░░░░███░████░░█                         \n" +
+                "               ███████░░██░███░░░░░█░░░░░░░░░░░░░██░░░░░░███████░█░███ █░░░░░░░░░░░░░░███████░░██░███░░░░░█░                          \n" +
+                "           ░░░██░░░░░░████░░░░░░░░░░█░░░░░░░░░░░█░░░░█░░██░░░░░░░██ ░  █░░░░░░░░░░░░░░░░░░░░░████░░░░░░░░░░█                          \n" +
+                "           ░██░░░░░░░░████░░░░░░░░░░█░░░░░██████░░░░░░███            ░ ██░░░░░░░░░░░░░░░░░░░░░████░░░░░░░░░░█                         \n" +
+                "           ░█░░░░░░░░░░████░░░░░░░░░░█████████░░░░░░░██        ░  ░     ████░░░░░░░░░░░░░░░░░░████░░░░░░░░░░███████                   \n" +
+                "           ░░░░░░░░░░░████░░░░░░░░░█████░░░██░░░░░░░██                   █████░░░░░░░░░░░░░░░░████░░░░░░░░░█████░░░██                 \n" +
+                "           ░░░░░░░░░░██████░░░░░░░░██████░░░░█░░░█░█                        ███░░░░░░░░░░░░██████░░░░░░░░██████░░░░█                  \n" +
+                "           ░░█░░░░░████████░░░░░████████░░░░░███████                          ██████░░░░░████████░░░░░████████░░░█░█                  \n" +
+                "           ██░░█░░░███████████████████████░█░░░░█                                  ███████████████████████░█░░░░█░░█                  \n" +
+                "           ░░░█░░████████████████████████░█░░░░█                                   ██████████████████████░█░░░░█░█                    \n" +
+               $"           ░░░██████████████████████████████░█░                                     █████████████████████░█░░░░█                      \n" +
+                "           ░░░░████████████████████████████                                          ██████████████████████░░░░█                      \n" +
+                "           ░░░░░░░████████████████████████                                           ████████████████████░░░░░█                       \n"
+                );}
+   
+        static void RenderSpriteAttack(string name1, int health1, string name2, int health2) {
+            Console.WriteLine(
+
+               "                           ██░██░██                                     ░██████                          \n" +
+               $"  {name1} {health1}hp                 ██░██░████                                    ████████                          \n" +
+                "                         ████░██░██░█                  ░░░░░░░░░░░░░░████████████                        \n" +
+               $"                          █░░░░░░░░░░█                 ░░░░░░░░░░░░░░█░░░░░░░░░░█       {name2} {health2}hp  \n" +
+                "                         █░░░░░░░░░░█                  ░░░░░░░░░░░░█░░░░░░░░░░█                         \n" +
+                "                        ██░███░░███░█                  ░░░░░░░░░░░░░░████░░███░░██                         \n" +
+                "                       █░█░░░█░░░░█░░█                ░░░░░░░░░░░░░░░█░█░░░░█░░░░░█                       \n" +
+                "                         █░░░░░░░░░░░█                ░░░░░░░██████████░░░░░░░░░█                        \n" +
+                "                         █░░████░░░░█                 ░░░░███░░░░░░░██░████░░░░█                        \n" +
+                "                          █░░░░░░█░██░░░░░░░░░░░░░░░░██░██░░░░░█░█░███░████░░░█                        \n" +
+                "                          ███░████░░█░░░░░░░░░░░░░░██░░░░░░░░██████░░░░░░░░░░███                        \n" +
+                "               ███████░░██░███░░░░░█░░░░░░░░░░░░░██░░░░░░███░░░░░░░░░░░░███████░░██                          \n" +
+                "           ░░░██░░░░░░████░░░░░░░░░░█░░░░░░░░░░░█░░░░█░░██░░░░░░░█░░░░░░░░░░░░░░░░░█                          \n" +
+                "           ░██░░░░░░░░████░░░░░░░░░░█░░░░░██████░░░░░░███░░░░░░░░███░░░░░░░░░░░░░█████                         \n" +
+                "           ░█░░░░░░░░░░████░░░░░░░░░░█████████░░░░░░░██ █░░░░░░░██░█░░░░░░░░░░░███████                   \n" +
+                "           ░░░░░░░░░░░████░░░░░░░░░█████░░░██░░░░░░░██ █░░░░░░░██░█░░░░░░░░░░█████░░░██                 \n" +
+                "           ░░░░░░░░░░██████░░░░░░░░██████░░░░█░░░█░█░  █░░░░░███░██░░░░█░░██████░░░░░░░█                  \n" +
+                "           ░░█░░░░░████████░░░░░████████░░░░░███████   ██████░░░░░█████████░█░░░░░░░░░█░█                  \n" +
+                "           ██░░█░░░███████████████████████░█░░░░█      ███████████████████████░█░░░░█░░█                  \n" +
+                "           ░░░█░░████████████████████████░█░░░░█        ██████████████████████░█░░░░█░█                    \n" +
+               $"           ░░░██████████████████████████████░█░          █████████████████████░█░░░░█                      \n" +
+                "           ░░░░████████████████████████████                ██████████████████████░░░░█                      \n" +
+                "           ░░░░░░░████████████████████████                 ████████████████████░░░░░█                       \n"
+        );}
+
+
+
         static void Main(string[] args)
         {
 
+            Console.WriteLine("Имя 1-го бойца: ");
+            string User1 = Console.ReadLine();
+            
 
-            string spriteAttack = "(c ▀ ▀ )r▀██)";
-            string spriteBlock = "(▀█p(▀'▀,)";
-            string spriteDead = "(^︵^,)";
-
-            int AbilityPoints = 100;
-
-            Console.WriteLine("Назовите бойца слева: ");
-            string username1 = Console.ReadLine();
-
-            Console.WriteLine("Назовите бойца справа: ");
-            string username2 = Console.ReadLine();
-
-            Console.WriteLine("Назовите бойца по центру: ");
-            string username3 = Console.ReadLine();
+            Console.WriteLine("Имя 2-го бойца: ");
+            string User2 = Console.ReadLine();
 
             var rnd = new Random();
-            Fighter PlayerRight = new Fighter { Power = 20 + rnd.Next(15, 30), Name = username1 };
-            Fighter PlayerLeft = new Fighter { Power = 20 + rnd.Next(15, 30), Name = username2 };
-            Fighter PlayerMid = new Fighter { Power = 20 + rnd.Next(15, 30), Name = username3 };
+            Fighter Player1 = new Fighter { Name = User1, Power = rnd.Next(100,160)};
+            Fighter Player2 = new Fighter { Name = User2, Power = rnd.Next(100, 160) };
 
-        
-            do
-            {
-                int randomAttack = rnd.Next(0, 4);
-
-                switch (randomAttack)
+            
+            do {
+                Thread.Sleep(2000);
+                int randomAttack = rnd.Next(1,3);
+                if (randomAttack == 1)
                 {
-                    case 1:
-                        Thread.Sleep(1000);
-                        Console.WriteLine($"{PlayerLeft.Name} {spriteAttack} {PlayerRight.Name}");
-                        Thread.Sleep(700);
-                        if (PlayerLeft.BlockOrNot() == true)
-                        {
-                            Console.WriteLine($"{spriteBlock} блок от {PlayerRight.Name}");
-                        }
-                        else {
-                            PlayerRight.Health -= PlayerLeft.Power;
-                        }
-
-                        if (PlayerRight.Health <= 0) {
-                            Console.WriteLine($"{PlayerRight.Name} лежит без пульса! {spriteDead}");
-                        }
-                        break;
-
-
-                    case 2:
-                        Thread.Sleep(1000);
-                        Console.WriteLine($"{PlayerRight.Name}  {spriteAttack} {PlayerMid.Name}");
-                        Thread.Sleep(700);
-                        if (PlayerRight.BlockOrNot() == true)
-                        {
-                            Console.WriteLine($"{spriteBlock} блок от {PlayerMid.Name}");
-                        }
-                        else
-                        {
-                            PlayerMid.Health -= PlayerRight.Power;
-                        }
-
-                        if (PlayerMid.Health <= 0)
-                        {
-                            Console.WriteLine($"{PlayerMid.Name} лежит без пульса! {spriteDead}");
-                        }
-                        break;
-
-
-                    case 3:
-                        Thread.Sleep(700);
-                        Console.WriteLine($"{PlayerMid.Name}  {spriteAttack} {PlayerLeft.Name}");
-
-                        Thread.Sleep(1000);
-                        if (PlayerMid.BlockOrNot() == true)
-                        {
-                            Console.WriteLine($"{spriteBlock} блок от {PlayerLeft.Name}");
-                        }
-                        else
-                        {
-                            PlayerLeft.Health -= PlayerMid.Power;
-                        }
-
-                        if (PlayerLeft.Health <= 0)
-                        {
-                            Console.WriteLine($"{PlayerLeft.Name} лежит без пульса! {spriteDead}");
-                        }
-                        break;
+                    
+                    Console.WriteLine($"ПОПЫТКА АТАКОВАТЬ ИГРОКА ОТ {Player1.Name}a");
+                    if (Player2.TryBlock() == true)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("БЛОК!");
+                        RenderSpriteBlock(Player1.Name, Player1.Health, Player2.Name, Player2.Health);
                         
-                };
-                Console.WriteLine(" ");
-
-            } while (PlayerLeft.Health > 0 && PlayerMid.Health > 0 && PlayerRight.Health > 0) ;
+                    }
+                    else {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("УСПЕШНАЯ АТАКА!");
+                        Player2.Health -= Player1.Power;
+                        RenderSpriteAttack(Player1.Name, Player1.Health, Player2.Name, Player2.Health);
+                    }
+                }
+                else {
+                    Console.WriteLine("ПОПЫТКА АТАКОВАТЬ ИГРОКА");
+                    Thread.Sleep(1500);
+                    if (Player1.TryBlock() == true)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("БЛОК!");
+                        RenderSpriteBlock(Player2.Name, Player2.Health, Player1.Name, Player1.Health);
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("УДАЧНАЯ АТАКА!");
+                        Player1.Health -= Player2.Power;
+                        RenderSpriteAttack(Player2.Name, Player2.Health, Player1.Name, Player1.Health);
+         
+                    }
+                }
+            }
+            while (Player1.Health > 0 && Player2.Health > 0);
 
         }
     }
